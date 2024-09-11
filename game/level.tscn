@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpfdwxw0ns82y"]
+[gd_scene load_steps=3 format=3 uid="uid://bpfdwxw0ns82y"]
 
 [ext_resource type="PackedScene" uid="uid://dhcwgyrj6yyqn" path="res://game/tower.tscn" id="1_f5brq"]
+[ext_resource type="Script" path="res://game/level.gd" id="1_wyn0i"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_wyn0i")
 
 [node name="Tower" parent="." instance=ExtResource("1_f5brq")]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawn" type="Timer" parent="."]
+
+[connection signal="timeout" from="Spawn" to="." method="_on_spawn_timeout"]
