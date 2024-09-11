@@ -3,6 +3,9 @@ extends CharacterBody2D
 var hp = 10
 const fireball = preload("res://game/fireball.tscn")
 
+signal took_damage(hp)
+signal died
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		# Get the unicode value of the key event
