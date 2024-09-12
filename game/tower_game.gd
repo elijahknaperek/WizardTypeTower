@@ -23,3 +23,7 @@ func on_enemy_defeat():
 func _on_spawn_timeout() -> void:
 	spawn_enemy()
 	$Spawn.wait_time = 60.0/cpm
+
+
+func _on_tower_took_damage(hp: Variant) -> void:
+	%SegmentedProgressBar.value = hp/10.0

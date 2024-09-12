@@ -33,6 +33,10 @@ func fire_fireball(chr):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body)
 	body.queue_free()
 	hp -= 1
+	if hp <= 0:
+		took_damage.emit(0)
+		died.emit()
+	else:
+		took_damage.emit(hp)
