@@ -69,5 +69,6 @@ size_flags_stretch_ratio = 0.1
 layout_mode = 2
 size_flags_horizontal = 3
 
+[connection signal="died" from="Tower" to="." method="_on_Tower_died"]
 [connection signal="took_damage" from="Tower" to="." method="_on_tower_took_damage"]
 [connection signal="timeout" from="Spawn" to="." method="_on_spawn_timeout"]

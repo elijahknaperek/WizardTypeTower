@@ -1,10 +1,14 @@
 extends Node2D
 
 const enemy = preload("res://game/enemy.tscn")
+const GAME_OVER_SCENE = preload("res://game/game_over.tscn")
 var cpm = 30.0
 
+
 func _ready() -> void:
+	Global.score = 0
 	$Spawn.start()
+	
 
 func spawn_enemy():
 	var e = enemy.instantiate()
@@ -18,6 +22,7 @@ func spawn_enemy():
 	
 func on_enemy_defeat():
 	cpm = cpm + 0.1
+	Global.score += 1
 
 
 func _on_spawn_timeout() -> void:
@@ -27,3 +32,6 @@ func _on_spawn_timeout() -> void:
 
 func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
+	
+func _on_Tower_died():
+	get_tree().change_scene_to_packed(GAME_OVER_SCENE)

@@ -16,7 +16,7 @@ signal dead
 func _ready() -> void:
 
 	chr = Global.chars2[randi_range(0,len(Global.chars2)-1)]
-	print(chr)
+	#print(chr)
 	$Label.text = chr
 	
 	
