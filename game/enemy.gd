@@ -11,7 +11,9 @@ var player
 var stop_speed := 400.0
 @export var friction := 0.2	
 
-signal dead
+var bonus := 5
+
+signal dead(bonus:int)
 
 func _ready() -> void:
 
@@ -34,7 +36,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func hit():
-	dead.emit()
+	if get_parent().get_child(0) == self:
+		bonus += 1
+	dead.emit(bonus)
 	queue_free()
 
 

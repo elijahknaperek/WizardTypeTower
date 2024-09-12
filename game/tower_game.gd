@@ -20,9 +20,9 @@ func spawn_enemy():
 	$Enemies.add_child(e)
 	
 	
-func on_enemy_defeat():
-	cpm = cpm + 0.1
-	Global.score += 1
+func on_enemy_defeat(bonus):
+	cpm = cpm + 0.1 + (0.1 * bonus)
+	Global.score += 1 + bonus
 
 
 func _on_spawn_timeout() -> void:
