@@ -1,17 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhcwgyrj6yyqn"]
+[gd_scene load_steps=5 format=3 uid="uid://dhcwgyrj6yyqn"]
 
 [ext_resource type="Script" path="res://game/tower.gd" id="1_e5sva"]
+[ext_resource type="Texture2D" uid="uid://bhejmu25fahb6" path="res://assets/image/tower.png" id="2_5qooa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gtou"]
-
-[sub_resource type="Gradient" id="Gradient_817e3"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xxk4j"]
-gradient = SubResource("Gradient_817e3")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.705128, 0.269231)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ceihx"]
 radius = 12.0416
@@ -24,7 +16,9 @@ script = ExtResource("1_e5sva")
 shape = SubResource("CircleShape2D_3gtou")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_xxk4j")
+position = Vector2(0, -15)
+scale = Vector2(0.105, 0.105)
+texture = ExtResource("2_5qooa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
