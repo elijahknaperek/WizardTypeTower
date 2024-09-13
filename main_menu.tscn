@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7py0xk1rp6f8"]
+[gd_scene load_steps=4 format=3 uid="uid://b7py0xk1rp6f8"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_tp04a"]
+[ext_resource type="Texture2D" uid="uid://b7rlayuc3p02g" path="res://assets/image/Texture_01160_.png" id="2_1d5cb"]
 
 [sub_resource type="SystemFont" id="SystemFont_qyqq1"]
 font_names = PackedStringArray("Monospace")
@@ -12,6 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tp04a")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 640)
+texture = ExtResource("2_1d5cb")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
@@ -28,6 +33,10 @@ size_flags_stretch_ratio = 0.5
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = SubResource("SystemFont_qyqq1")
 theme_override_font_sizes/font_size = 39
 text = "Wizard Type Tower"
@@ -44,14 +53,18 @@ alignment = 1
 
 [node name="Start" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Start"
 
 [node name="Settings" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="Control3" type="Control" parent="VBoxContainer"]

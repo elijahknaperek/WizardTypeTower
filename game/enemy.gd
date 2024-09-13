@@ -43,7 +43,7 @@ func hit():
 	dead.emit(bonus)
 	
 	var bi = bonus_indicator.instantiate()
-	bi.text = "+" + str(bonus)
+	bi.text = "+" + str(1+bonus)
 	bi.global_position = global_position
 	get_parent().get_parent().get_node("Indicators").add_child(bi)
 	

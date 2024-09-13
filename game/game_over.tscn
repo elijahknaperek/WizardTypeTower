@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://32p0c5clmx5e"]
+[gd_scene load_steps=3 format=3 uid="uid://32p0c5clmx5e"]
 
 [ext_resource type="Script" path="res://game/game_over.gd" id="1_bayt5"]
+[ext_resource type="Texture2D" uid="uid://b7rlayuc3p02g" path="res://assets/image/Texture_01160_.png" id="2_sj7g3"]
 
 [node name="GameOver" type="HBoxContainer"]
 anchors_preset = 15
@@ -9,6 +10,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bayt5")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 640)
+texture = ExtResource("2_sj7g3")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
