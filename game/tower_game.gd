@@ -23,6 +23,7 @@ func spawn_enemy():
 func on_enemy_defeat(bonus):
 	cpm = cpm + 0.1 + (0.1 * bonus)
 	Global.score += 1 + bonus
+	%Score.text = str(Global.score)
 
 
 func _on_spawn_timeout() -> void:
@@ -34,7 +35,7 @@ func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
 	
 func _on_Tower_died():
-	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
+	get_tree().change_scene_to_packed.call_deferred(GAME_OVER_SCENE)
 
 
 func _on_bonus_reduce_body_entered(body: Node2D) -> void:
