@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const bonus_indicator = preload("res://game/bonus_indicator.tscn")
+
 var chr = " "
 var wish_dir
 var player
@@ -39,6 +41,12 @@ func hit():
 	if get_parent().get_child(0) == self:
 		bonus += 1
 	dead.emit(bonus)
+	
+	var bi = bonus_indicator.instantiate()
+	bi.text = "+" + str(bonus)
+	bi.global_position = global_position
+	get_parent().get_parent().get_node("Indicators").add_child(bi)
+	
 	queue_free()
 
 
