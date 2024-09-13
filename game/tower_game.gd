@@ -4,6 +4,7 @@ const enemy = preload("res://game/enemy.tscn")
 const GAME_OVER_SCENE = preload("res://game/game_over.tscn")
 var cpm = 30.0
 
+
 var dead = false
 
 func _ready() -> void:
@@ -25,6 +26,7 @@ func spawn_enemy():
 func on_enemy_defeat(bonus):
 	cpm = cpm + 0.1 + (0.1 * bonus)
 	Global.score += 1 + bonus
+	Global.streak += 1
 	%Score.text = str(Global.score)
 
 

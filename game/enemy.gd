@@ -39,13 +39,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func hit():
+	var total_bonus = bonus
 	if get_parent().get_child(0) == self:
-		bonus += 1
-	dead.emit(bonus)
+		total_bonus += 1
+		
+	total_bonus += Global.streak
+	dead.emit(total_bonus)
 	
 	var bi = bonus_indicator.instantiate()
-	bi.text = "+" + str(1+bonus)
+	bi.text = "+" + str(1+total_bonus)
 	bi.global_position = global_position
+	if bonus > 0:
+		bi.pitch_scale = 1.0
 	get_parent().get_parent().get_node("Indicators").add_child(bi)
 	
 	queue_free()

@@ -31,13 +31,15 @@ func fire_fireball(chr):
 			f.global_position = global_position
 			f.velocity = Vector2(1,0).rotated(randf() * 2 * PI) * 600
 			$FireFireball.play()
-			break
+			return
+	Global.streak = 0
 			
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	body.queue_free()
 	hp -= 1
+	Global.streak = 0
 	
 	if hp <= 0:
 		took_damage.emit(0)

@@ -10,3 +10,9 @@ const chars2 = "asdfjkl;ASDFJKL:!\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMN
 
 
 var score
+var streak = 0:
+	set(v):
+		if v > max_streak:
+			max_streak = v
+		streak = v
+var max_streak = 0
