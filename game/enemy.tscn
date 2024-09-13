@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkhcaxhqm2j60"]
+[gd_scene load_steps=8 format=3 uid="uid://bkhcaxhqm2j60"]
 
 [ext_resource type="Script" path="res://game/enemy.gd" id="1_14lou"]
 [ext_resource type="Texture2D" uid="uid://ce56ixbsieyvi" path="res://assets/image/ComfyUI_temp_jzgua_00009_.png" id="2_18o2v"]
+[ext_resource type="AudioStream" uid="uid://bssky1eudoqsv" path="res://assets/sound/dmg_half.wav" id="3_vwpg2"]
 
 [sub_resource type="SystemFont" id="SystemFont_q7q17"]
 font_names = PackedStringArray("Monospace")
@@ -62,5 +63,8 @@ shape = SubResource("CircleShape2D_upr4p")
 visible = false
 scale = Vector2(0.515, 0.515)
 texture = SubResource("GradientTexture2D_18gor")
+
+[node name="ShieldHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vwpg2")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
