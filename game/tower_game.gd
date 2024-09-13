@@ -4,10 +4,12 @@ const enemy = preload("res://game/enemy.tscn")
 const GAME_OVER_SCENE = preload("res://game/game_over.tscn")
 var cpm = 30.0
 
+var dead = false
 
 func _ready() -> void:
 	Global.score = 0
 	$Spawn.start()
+	$AnimationPlayer.play("RESET")
 	
 
 func spawn_enemy():
@@ -35,6 +37,11 @@ func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
 	
 func _on_Tower_died():
+	if dead:
+		return
+	dead = true
+	$AnimationPlayer.play("Death")
+	await $AnimationPlayer.animation_finished
 	get_tree().change_scene_to_packed.call_deferred(GAME_OVER_SCENE)
 
 

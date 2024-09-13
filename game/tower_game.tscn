@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpfdwxw0ns82y"]
+[gd_scene load_steps=24 format=3 uid="uid://bpfdwxw0ns82y"]
 
 [ext_resource type="PackedScene" uid="uid://dhcwgyrj6yyqn" path="res://game/tower.tscn" id="1_f5brq"]
 [ext_resource type="Script" path="res://game/tower_game.gd" id="1_wyn0i"]
@@ -26,7 +26,7 @@ fill_from = Vector2(1, 0)
 radius = 401.011
 
 [sub_resource type="Gradient" id="Gradient_sdtej"]
-offsets = PackedFloat32Array(0, 0.478125, 0.715625, 0.790625)
+offsets = PackedFloat32Array(0, 0.6, 0.690625, 0.765625)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5yyi3"]
@@ -35,6 +35,78 @@ width = 1280
 height = 1280
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_hs8gf"]
+offsets = PackedFloat32Array(0, 0.488235, 0.605882, 0.702941)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ed8if"]
+offsets = PackedFloat32Array(0, 0.367647, 0.505882, 0.605882)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_4u675"]
+offsets = PackedFloat32Array(0, 0.329412, 0.461765, 0.55)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_d7do1"]
+offsets = PackedFloat32Array(0, 0.291176, 0.414706, 0.508824)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_llom7"]
+offsets = PackedFloat32Array(0, 0.205882, 0.314706, 0.423529)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_it5px"]
+offsets = PackedFloat32Array(0, 0.205882, 0.279412, 0.373529)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_dis0t"]
+offsets = PackedFloat32Array(0, 0.0411765, 0.0882353, 0.138235)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_pkyh6"]
+offsets = PackedFloat32Array(0, 0.0823529, 0.138235, 0.765625)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_sqjr6"]
+offsets = PackedFloat32Array(0, 0.0382353)
+
+[sub_resource type="Animation" id="Animation_t3rgt"]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background2:texture:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.166667, 0.2, 0.266667, 0.333333, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1.18921, 1),
+"update": 0,
+"values": [SubResource("Gradient_sdtej"), SubResource("Gradient_hs8gf"), SubResource("Gradient_ed8if"), SubResource("Gradient_4u675"), SubResource("Gradient_d7do1"), SubResource("Gradient_llom7"), SubResource("Gradient_it5px"), SubResource("Gradient_dis0t"), SubResource("Gradient_pkyh6"), SubResource("Gradient_sqjr6"), SubResource("Gradient_sqjr6")]
+}
+
+[sub_resource type="Animation" id="Animation_06cev"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background2:texture:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_sdtej")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfjid"]
+_data = {
+"Death": SubResource("Animation_t3rgt"),
+"RESET": SubResource("Animation_06cev")
+}
 
 [node name="TowerGame" type="Node2D"]
 script = ExtResource("1_wyn0i")
@@ -133,6 +205,11 @@ shape = SubResource("CircleShape2D_dss4a")
 
 [node name="Background2" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_5yyi3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nfjid")
+}
 
 [connection signal="died" from="Tower" to="." method="_on_Tower_died"]
 [connection signal="took_damage" from="Tower" to="." method="_on_tower_took_damage"]
