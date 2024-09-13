@@ -1,3 +1,11 @@
+tower
+	shield for enemies
+	dmg type
+	batch enemies, change prob of batch size instead of cpm
+	streak save
+	closest indicator
+	levels?
+
 Adventure mode:
 	move with home row on one side
 	focus on hitting the right shift key while typing (and looking at the screen)
