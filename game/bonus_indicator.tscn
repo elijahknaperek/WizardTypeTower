@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl2wy44x7k0kr"]
+[gd_scene load_steps=6 format=3 uid="uid://bl2wy44x7k0kr"]
 
 [ext_resource type="Script" path="res://game/bonus_indicator.gd" id="1_xmy0f"]
+[ext_resource type="AudioStream" uid="uid://g7wayrmbgwyu" path="res://assets/sound/dmg.wav" id="2_np7jh"]
 
 [sub_resource type="Animation" id="Animation_hi55v"]
 resource_name = "FadeOut"
@@ -53,5 +54,9 @@ script = ExtResource("1_xmy0f")
 libraries = {
 "": SubResource("AnimationLibrary_2lqms")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_np7jh")
+autoplay = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
