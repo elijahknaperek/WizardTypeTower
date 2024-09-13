@@ -35,3 +35,7 @@ func _on_tower_took_damage(hp: Variant) -> void:
 	
 func _on_Tower_died():
 	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
+
+
+func _on_bonus_reduce_body_entered(body: Node2D) -> void:
+	body.bonus = 0

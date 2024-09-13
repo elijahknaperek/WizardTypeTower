@@ -27,7 +27,7 @@ func fire_fireball(chr):
 			var f = fireball.instantiate()
 			get_parent().add_child(f)
 			f.global_position = global_position
-			f.velocity = (enemy.global_position -  global_position).normalized() * 400
+			f.velocity = (enemy.global_position -  global_position).normalized() * 600
 			break
 			
 
