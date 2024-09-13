@@ -4,6 +4,8 @@ const enemy = preload("res://game/enemy.tscn")
 const GAME_OVER_SCENE = preload("res://game/game_over.tscn")
 var cpm = 30.0
 
+var shield_chance = 0.1
+
 
 var dead = false
 
@@ -19,6 +21,8 @@ func spawn_enemy():
 	
 	e.global_position = ($Tower.global_position+Vector2(680,0).rotated(randf() * 2 * PI))
 	e.player = $Tower
+	if randf() < shield_chance:
+		e.shield = 1
 	e.dead.connect(on_enemy_defeat)
 	$Enemies.add_child(e)
 	

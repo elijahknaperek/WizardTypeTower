@@ -14,6 +14,11 @@ var player
 var stop_speed := 400.0
 @export var friction := 0.2	
 
+var shield = 0:
+	set(v):
+		$Shield.visible = v > 0
+		shield = v
+
 var bonus := 5
 
 signal dead(bonus:int)
@@ -59,4 +64,7 @@ func hit():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.target_char == chr:
 		body.queue_free()
-		hit()
+		if shield > 0:
+			shield -= 1
+		else:
+			hit()
