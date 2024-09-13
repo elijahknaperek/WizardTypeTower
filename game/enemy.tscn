@@ -1,20 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkhcaxhqm2j60"]
+[gd_scene load_steps=10 format=3 uid="uid://bkhcaxhqm2j60"]
 
 [ext_resource type="Script" path="res://game/enemy.gd" id="1_14lou"]
 [ext_resource type="Texture2D" uid="uid://ce56ixbsieyvi" path="res://assets/image/ComfyUI_temp_jzgua_00009_.png" id="2_18o2v"]
 [ext_resource type="AudioStream" uid="uid://bssky1eudoqsv" path="res://assets/sound/dmg_half.wav" id="3_vwpg2"]
+
+[sub_resource type="Gradient" id="Gradient_c21ws"]
+offsets = PackedFloat32Array(0.296875, 0.3125, 0.340625, 0.36875, 0.41875)
+colors = PackedColorArray(1, 1, 1, 0, 0.501961, 1, 1, 1, 0.501961, 1, 1, 1, 0.998, 0.998, 0.998, 0.0914286, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_foji6"]
+gradient = SubResource("Gradient_c21ws")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="SystemFont" id="SystemFont_q7q17"]
 font_names = PackedStringArray("Monospace")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upr4p"]
 
-[sub_resource type="Gradient" id="Gradient_4lobt"]
-offsets = PackedFloat32Array(0.415625, 0.65, 0.671875, 0.703125)
-colors = PackedColorArray(0.998, 0.998, 0.998, 0.0914286, 1, 1, 1, 1, 0.978125, 0.978125, 0.978125, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_ijn32"]
+offsets = PackedFloat32Array(0.34375, 0.421875, 0.459375, 0.471875, 0.521875)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0.998, 0.998, 0.998, 0.0914286, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_18gor"]
-gradient = SubResource("Gradient_4lobt")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d0onf"]
+gradient = SubResource("Gradient_ijn32")
 width = 256
 height = 256
 fill = 1
@@ -28,6 +39,11 @@ script = ExtResource("1_14lou")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("2_18o2v")
+
+[node name="Closest" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.515, 0.515)
+texture = SubResource("GradientTexture2D_foji6")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -62,7 +78,7 @@ shape = SubResource("CircleShape2D_upr4p")
 [node name="Shield" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.515, 0.515)
-texture = SubResource("GradientTexture2D_18gor")
+texture = SubResource("GradientTexture2D_d0onf")
 
 [node name="ShieldHitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_vwpg2")

@@ -24,7 +24,9 @@ func spawn_enemy():
 	if randf() < shield_chance:
 		e.shield = 1
 	e.dead.connect(on_enemy_defeat)
+	e.closest = !( $Enemies.get_child_count() > 0 )
 	$Enemies.add_child(e)
+	
 	
 	
 func on_enemy_defeat(bonus):

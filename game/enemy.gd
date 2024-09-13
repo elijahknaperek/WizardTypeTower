@@ -19,6 +19,11 @@ var shield = 0:
 		$Shield.visible = v > 0
 		shield = v
 
+var closest := false:
+	set(v):
+		$Closest.visible = v
+		closest = v
+
 var bonus := 5
 
 signal dead(bonus:int)
@@ -47,6 +52,8 @@ func hit():
 	var total_bonus = bonus
 	if get_parent().get_child(0) == self:
 		total_bonus += 1
+		if get_parent().get_child_count() > 1:
+			get_parent().get_child(1).closest = true
 		
 	total_bonus += Global.streak
 	dead.emit(total_bonus)
@@ -58,10 +65,16 @@ func hit():
 		bi.pitch_scale = 1.0
 	get_parent().get_parent().get_node("Indicators").add_child(bi)
 	
+	remove()
+	
+func remove():
+	
+	if closest and get_parent().get_child_count() > 1:
+		get_parent().get_child(1).closest = true
 	queue_free()
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Fireball) -> void:
 	if body.target_char == chr:
 		body.queue_free()
 		if shield > 0:

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Fireball
 
 @export var max_velocity := 600.0
 @export var max_over_velocity := 4000.0

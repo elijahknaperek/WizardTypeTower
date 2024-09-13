@@ -36,8 +36,8 @@ func fire_fireball(chr):
 			
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	body.queue_free()
+func _on_area_2d_body_entered(body: Enemy) -> void:
+	body.remove()
 	hp -= 1
 	Global.streak = 0
 	
