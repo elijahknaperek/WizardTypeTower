@@ -14,7 +14,7 @@ func spawn_enemy():
 	var e = enemy.instantiate()
 	
 	
-	e.global_position = ($Tower.global_position+Vector2(1000,0).rotated(randf() * 2 * PI))
+	e.global_position = ($Tower.global_position+Vector2(680,0).rotated(randf() * 2 * PI))
 	e.player = $Tower
 	e.dead.connect(on_enemy_defeat)
 	$Enemies.add_child(e)
