@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhcwgyrj6yyqn"]
+[gd_scene load_steps=7 format=3 uid="uid://dhcwgyrj6yyqn"]
 
 [ext_resource type="Script" path="res://game/tower.gd" id="1_e5sva"]
 [ext_resource type="Texture2D" uid="uid://bhejmu25fahb6" path="res://assets/image/tower.png" id="2_5qooa"]
+[ext_resource type="AudioStream" uid="uid://pfj5beiqouun" path="res://assets/sound/Shield_break.wav" id="3_h2afs"]
+[ext_resource type="AudioStream" uid="uid://b8p5mfjbkmpg3" path="res://assets/sound/launcher.ogg" id="4_t6umo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gtou"]
 
@@ -31,5 +33,13 @@ shape = SubResource("CircleShape2D_ceihx")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="TakeDamage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_h2afs")
+volume_db = -5.0
+
+[node name="FireFireball" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_t6umo")
+volume_db = -2.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

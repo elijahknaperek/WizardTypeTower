@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 const bonus_indicator = preload("res://game/bonus_indicator.tscn")
 
@@ -51,5 +52,6 @@ func hit():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	body.queue_free()
-	hit()
+	if body.target_char == chr:
+		body.queue_free()
+		hit()

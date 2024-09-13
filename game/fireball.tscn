@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://co8xpu1afhch4"]
+[gd_scene load_steps=6 format=3 uid="uid://co8xpu1afhch4"]
 
 [ext_resource type="Script" path="res://game/fireball.gd" id="1_2kgte"]
+[ext_resource type="AudioStream" uid="uid://blnupvb0nxs6d" path="res://assets/sound/rocket.wav" id="2_gg2w6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_787ac"]
 radius = 5.0
@@ -24,3 +25,8 @@ shape = SubResource("CircleShape2D_787ac")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_nrde5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_gg2w6")
+volume_db = -5.0
+autoplay = true
