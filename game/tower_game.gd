@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 
 func spawn_enemy():
-	var num_to_spawn = int(clamp(randfn(4,3),1,min(12,wpm*0.5)))
+	var num_to_spawn = int(clamp(randfn(4,1),1,min(12,wpm*0.5)))
 	var pos = randf() * 2 * PI
 	
 	var start_spawn_dist =  min_spawn_dist
