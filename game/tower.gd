@@ -7,6 +7,11 @@ signal took_damage(hp)
 signal died
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Backspace"):
+		if $AnimationPlayer.current_animation == "savestreak":
+			save_streak()
+		
+	
 	if event is InputEventKey and event.pressed:
 		# Get the unicode value of the key event
 		var unicode_value = event.unicode
@@ -32,9 +37,18 @@ func fire_fireball(chr):
 			f.velocity = Vector2(1,0).rotated(randf() * 2 * PI) * 600
 			$FireFireball.play()
 			return
-	Global.streak = 0
+	if Global.streak > 0:
+		$AnimationPlayer.play("savestreak")
 			
-
+func save_streak():
+	$AnimationPlayer.pause()
+	$Control/VBoxContainer/Label.text = "←"
+	get_tree().create_timer(0.3).timeout.connect(func():$AnimationPlayer.play("RESET"))
+	
+func fail_save_streak():
+	Global.streak = 0
+	
+	
 
 func _on_area_2d_body_entered(body: Enemy) -> void:
 	body.remove()

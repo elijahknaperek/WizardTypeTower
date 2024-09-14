@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhcwgyrj6yyqn"]
+[gd_scene load_steps=15 format=3 uid="uid://dhcwgyrj6yyqn"]
 
 [ext_resource type="Script" path="res://game/tower.gd" id="1_e5sva"]
 [ext_resource type="Texture2D" uid="uid://bhejmu25fahb6" path="res://assets/image/tower.png" id="2_5qooa"]
@@ -9,6 +9,146 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ceihx"]
 radius = 12.0416
+
+[sub_resource type="Gradient" id="Gradient_gm0m0"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.243137, 0.243137, 0.243137, 0.705882)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kp2t1"]
+gradient = SubResource("Gradient_gm0m0")
+
+[sub_resource type="SystemFont" id="SystemFont_o682o"]
+font_names = PackedStringArray("Monospace")
+hinting = 0
+oversampling = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4k852"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd8q1"]
+content_margin_top = 2.0
+bg_color = Color(0.663378, 0.769749, 1, 1)
+
+[sub_resource type="Animation" id="Animation_pdkcf"]
+resource_name = "savestreak"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer/ProgressBar:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [100.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Control/VBoxContainer/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.475, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/VBoxContainer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.366667, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["←", "", "←", "", "←", "", "←"]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fail_save_streak"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_w4x0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer/ProgressBar:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/VBoxContainer/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/VBoxContainer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["←"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1akm4"]
+_data = {
+"RESET": SubResource("Animation_w4x0l"),
+"savestreak": SubResource("Animation_pdkcf")
+}
 
 [node name="Tower" type="CharacterBody2D"]
 collision_layer = 2
@@ -41,5 +181,60 @@ volume_db = -5.0
 [node name="FireFireball" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_t6umo")
 volume_db = -2.0
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -40.0
+offset_right = 40.0
+offset_bottom = 29.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.01, 1.01)
+texture = SubResource("GradientTexture2D_kp2t1")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.662745, 0.768627, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("SystemFont_o682o")
+theme_override_font_sizes/font_size = 20
+text = "←"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_4k852")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hd8q1")
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1akm4")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
