@@ -7,7 +7,7 @@ var chr = " "
 var wish_dir
 var player
 
-@export var max_velocity := 100.0
+@export var max_velocity := 80.0
 @export var max_over_velocity := 4000.0
 @export var accel := 1200.0
 
