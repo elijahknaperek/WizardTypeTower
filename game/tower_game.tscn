@@ -202,6 +202,7 @@ shape = SubResource("CircleShape2D_dss4a")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Spawn" type="Timer" parent="."]
+one_shot = true
 
 [node name="Background2" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_5yyi3")
