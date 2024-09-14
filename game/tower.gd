@@ -3,6 +3,8 @@ extends CharacterBody2D
 var hp = 10
 const fireball = preload("res://game/fireball.tscn")
 
+var taking_damage = false
+
 signal took_damage(hp)
 signal died
 
@@ -53,6 +55,8 @@ func fail_save_streak():
 	
 
 func _on_area_2d_body_entered(body: Enemy) -> void:
+	if taking_damage: return
+	taking_damage = true
 	body.remove()
 	hp -= 1
 	Global.streak = 0
@@ -63,3 +67,6 @@ func _on_area_2d_body_entered(body: Enemy) -> void:
 	else:
 		$TakeDamage.play()
 		took_damage.emit(hp)
+	
+	(func():taking_damage = false).call_deferred()
+	#f.call_deferred()

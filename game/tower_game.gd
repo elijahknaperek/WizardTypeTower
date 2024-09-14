@@ -61,8 +61,9 @@ func _on_spawn_timeout() -> void:
 func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
 	wpm -= wpm_down_on_hit
-	for e:Enemy in $Enemies.get_children():
-		e.velocity += (e.global_position - $Tower.global_position).normalized() * 1000.0
+	for enemy in $Enemies.get_child_count():
+		var e:Enemy = $Enemies.get_child(enemy)
+		e.velocity += (e.global_position - $Tower.global_position).normalized() * (1000.0 + 20.0 * enemy)
 	
 func _on_Tower_died():
 	if dead:
