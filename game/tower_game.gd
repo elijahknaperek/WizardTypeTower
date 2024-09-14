@@ -4,7 +4,7 @@ const enemy = preload("res://game/enemy.tscn")
 const GAME_OVER_SCENE = preload("res://game/game_over.tscn")
 var wpm = 10.0:
 	set(v):
-		wpm = max(v,5.0)
+		wpm = max(v,10.0)
 
 var shield_chance = 0.1
 
@@ -48,7 +48,9 @@ func _on_spawn_timeout() -> void:
 
 func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
-	wpm -= 10.0
+	wpm -= 5.0
+	for e:Enemy in $Enemies.get_children():
+		e.velocity += (e.global_position - $Tower.global_position).normalized() * 1000.0
 	
 func _on_Tower_died():
 	if dead:

@@ -9,7 +9,8 @@ var player
 
 @export var max_velocity := 80.0
 @export var max_over_velocity := 4000.0
-@export var accel := 1200.0
+@export var accel := 100.0
+var max_accel = 1000.0
 
 var stop_speed := 400.0
 @export var friction := 0.2	
@@ -36,6 +37,7 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
+	accel = min(max_accel,accel + 15)
 	wish_dir = (player.global_position - global_position).normalized()
 	
 	if velocity.length() > 0:
