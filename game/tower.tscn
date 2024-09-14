@@ -1,9 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhcwgyrj6yyqn"]
+[gd_scene load_steps=18 format=3 uid="uid://dhcwgyrj6yyqn"]
 
 [ext_resource type="Script" path="res://game/tower.gd" id="1_e5sva"]
 [ext_resource type="Texture2D" uid="uid://bhejmu25fahb6" path="res://assets/image/tower.png" id="2_5qooa"]
 [ext_resource type="AudioStream" uid="uid://pfj5beiqouun" path="res://assets/sound/Shield_break.wav" id="3_h2afs"]
 [ext_resource type="AudioStream" uid="uid://b8p5mfjbkmpg3" path="res://assets/sound/launcher.ogg" id="4_t6umo"]
+[ext_resource type="AudioStream" uid="uid://cclxm00igkfrg" path="res://assets/sound/save_fail.wav" id="5_rd0nx"]
+[ext_resource type="AudioStream" uid="uid://dyviswuwpc3g3" path="res://assets/sound/save_success.wav" id="6_d1uel"]
+[ext_resource type="AudioStream" uid="uid://cxokyefxivniu" path="res://assets/sound/save_chance.wav" id="7_atay0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gtou"]
 
@@ -92,6 +95,30 @@ tracks/4/keys = {
 "method": &"fail_save_streak"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SaveChance:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SaveFail:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_w4x0l"]
 length = 0.001
@@ -143,6 +170,30 @@ tracks/3/keys = {
 "update": 1,
 "values": ["←"]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SaveChance:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SaveFail:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1akm4"]
 _data = {
@@ -180,6 +231,18 @@ volume_db = -5.0
 
 [node name="FireFireball" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_t6umo")
+volume_db = -2.0
+
+[node name="SaveFail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rd0nx")
+volume_db = -2.0
+
+[node name="SaveSuccess" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_d1uel")
+volume_db = -2.0
+
+[node name="SaveChance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_atay0")
 volume_db = -2.0
 
 [node name="Control" type="Control" parent="."]

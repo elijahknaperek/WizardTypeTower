@@ -8,7 +8,7 @@ signal died
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Backspace"):
-		if $AnimationPlayer.current_animation == "savestreak":
+		if $AnimationPlayer.current_animation == "savestreak" and Global.streak > 0:
 			save_streak()
 		
 	
@@ -22,8 +22,9 @@ func _input(event: InputEvent) -> void:
 			var key_char = char(unicode_value)
 			fire_fireball(key_char)
 		else:
+			pass
 			# Handle keys that don't map to characters (like function keys, etc.)
-			print("Key pressed but no character representation: ", event.unicode)
+			#print("Key pressed but no character representation: ", event.unicode)
 			
 func fire_fireball(chr):
 	var enemy_list = get_parent().get_node("Enemies")
@@ -43,6 +44,7 @@ func fire_fireball(chr):
 func save_streak():
 	$AnimationPlayer.pause()
 	$Control/VBoxContainer/Label.text = "←"
+	$SaveSuccess.play()
 	get_tree().create_timer(0.3).timeout.connect(func():$AnimationPlayer.play("RESET"))
 	
 func fail_save_streak():
