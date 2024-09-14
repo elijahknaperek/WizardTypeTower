@@ -6,8 +6,14 @@ var wpm = 10.0:
 	set(v):
 		wpm = max(v,10.0)
 
+var wpm_down_on_hit = 5.0
+
+var wpm_gain_on_hit = 0.01
+
 var shield_chance = 0.1
 
+var min_spawn_dist = 680
+var spawn_spacing = 10
 
 var dead = false
 
@@ -20,9 +26,15 @@ func _ready() -> void:
 func spawn_enemy():
 	var num_to_spawn = int(clamp(randfn(4,3),1,min(12,wpm*0.5)))
 	var pos = randf() * 2 * PI
+	
+	var start_spawn_dist =  min_spawn_dist
+	if $Enemies.get_child_count() > 0:
+		var furthest:Enemy = $Enemies.get_child($Enemies.get_child_count()-1)
+		start_spawn_dist = max((furthest.global_position - $Tower.global_position).length(), min_spawn_dist)
+	
 	for total_spawned in num_to_spawn:
 		var e = enemy.instantiate()
-		e.global_position = ($Tower.global_position+Vector2(680 + 100 * total_spawned,0).rotated(randf() * 2 * PI))
+		e.global_position = ($Tower.global_position+Vector2(start_spawn_dist + spawn_spacing * total_spawned,0).rotated(randf() * 2 * PI))
 		e.player = $Tower
 		if randf() < shield_chance:
 			e.shield = 1
@@ -34,7 +46,7 @@ func spawn_enemy():
 	
 	
 func on_enemy_defeat(bonus):
-	wpm = wpm + 0.01 + (0.01 * bonus)
+	wpm = wpm + wpm_gain_on_hit + (wpm_gain_on_hit * bonus)
 	Global.score += 1 + bonus
 	Global.streak += 1
 	%Score.text = str(Global.score)
@@ -48,7 +60,7 @@ func _on_spawn_timeout() -> void:
 
 func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
-	wpm -= 5.0
+	wpm -= wpm_down_on_hit
 	for e:Enemy in $Enemies.get_children():
 		e.velocity += (e.global_position - $Tower.global_position).normalized() * 1000.0
 	
@@ -62,4 +74,8 @@ func _on_Tower_died():
 
 
 func _on_bonus_reduce_body_entered(body: Node2D) -> void:
-	body.bonus = 0
+	body.bonus -= 1
+
+
+func _on_activate_body_entered(body: Node2D) -> void:
+	body.active = true

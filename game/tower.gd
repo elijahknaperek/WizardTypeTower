@@ -28,8 +28,8 @@ func _input(event: InputEvent) -> void:
 			
 func fire_fireball(chr):
 	var enemy_list = get_parent().get_node("Enemies")
-	for enemy in enemy_list.get_children():
-		if enemy.chr == chr:
+	for enemy:Enemy in enemy_list.get_children():
+		if enemy.active and enemy.chr == chr:
 			var f = fireball.instantiate()
 			f.target = enemy
 			f.target_char = enemy.chr

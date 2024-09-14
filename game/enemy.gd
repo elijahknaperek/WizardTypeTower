@@ -6,6 +6,7 @@ const bonus_indicator = preload("res://game/bonus_indicator.tscn")
 var chr = " "
 var wish_dir
 var player
+var active = false
 
 @export var max_velocity := 80.0
 @export var max_over_velocity := 4000.0
@@ -25,7 +26,9 @@ var closest := false:
 		$Closest.visible = v
 		closest = v
 
-var bonus := 5
+var bonus := 5:
+	set(v):
+		bonus = max(0,v)
 
 signal dead(bonus:int)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpfdwxw0ns82y"]
+[gd_scene load_steps=29 format=3 uid="uid://bpfdwxw0ns82y"]
 
 [ext_resource type="PackedScene" uid="uid://dhcwgyrj6yyqn" path="res://game/tower.tscn" id="1_f5brq"]
 [ext_resource type="Script" path="res://game/tower_game.gd" id="1_wyn0i"]
@@ -23,7 +23,22 @@ gradient = SubResource("Gradient_x5sah")
 fill_from = Vector2(1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dss4a"]
-radius = 401.011
+radius = 490.001
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_utjr2"]
+radius = 403.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xvux"]
+radius = 333.006
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nngp0"]
+radius = 266.017
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqubc"]
+radius = 203.002
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xuqr0"]
+radius = 639.001
 
 [sub_resource type="Gradient" id="Gradient_sdtej"]
 offsets = PackedFloat32Array(0, 0.6, 0.690625, 0.765625)
@@ -115,6 +130,7 @@ script = ExtResource("1_wyn0i")
 texture = ExtResource("2_2me20")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.117647)
 position = Vector2(1, -0.500031)
 scale = Vector2(11.483, 11.5)
@@ -197,6 +213,41 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/BonusReduce"]
 shape = SubResource("CircleShape2D_dss4a")
 
+[node name="BonusReduce2" type="Area2D" parent="Tower"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/BonusReduce2"]
+shape = SubResource("CircleShape2D_utjr2")
+
+[node name="BonusReduce3" type="Area2D" parent="Tower"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/BonusReduce3"]
+shape = SubResource("CircleShape2D_1xvux")
+
+[node name="BonusReduce4" type="Area2D" parent="Tower"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/BonusReduce4"]
+shape = SubResource("CircleShape2D_nngp0")
+
+[node name="BonusReduce5" type="Area2D" parent="Tower"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/BonusReduce5"]
+shape = SubResource("CircleShape2D_bqubc")
+
+[node name="Activate" type="Area2D" parent="Tower"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Activate"]
+shape = SubResource("CircleShape2D_xuqr0")
+
 [node name="Indicators" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -216,4 +267,10 @@ libraries = {
 [connection signal="died" from="Tower" to="." method="_on_Tower_died"]
 [connection signal="took_damage" from="Tower" to="." method="_on_tower_took_damage"]
 [connection signal="body_entered" from="Tower/BonusReduce" to="." method="_on_bonus_reduce_body_entered"]
+[connection signal="body_entered" from="Tower/BonusReduce2" to="." method="_on_bonus_reduce_body_entered"]
+[connection signal="body_entered" from="Tower/BonusReduce3" to="." method="_on_bonus_reduce_body_entered"]
+[connection signal="body_entered" from="Tower/BonusReduce4" to="." method="_on_bonus_reduce_body_entered"]
+[connection signal="body_entered" from="Tower/BonusReduce5" to="." method="_on_bonus_reduce_body_entered"]
+[connection signal="body_entered" from="Tower/Activate" to="." method="_on_bonus_reduce_body_entered"]
+[connection signal="body_entered" from="Tower/Activate" to="." method="_on_activate_body_entered"]
 [connection signal="timeout" from="Spawn" to="." method="_on_spawn_timeout"]
