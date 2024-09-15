@@ -21,6 +21,7 @@ func _ready() -> void:
 	Global.score = 0
 	$Spawn.start()
 	$AnimationPlayer.play("start")
+	Global.streak_changed.connect(_on_streak_changed)
 	
 
 func spawn_enemy():
@@ -80,3 +81,6 @@ func _on_bonus_reduce_body_entered(body: Node2D) -> void:
 
 func _on_activate_body_entered(body: Node2D) -> void:
 	body.active = true
+	
+func _on_streak_changed(s):
+	%Streak.text = str(s)
