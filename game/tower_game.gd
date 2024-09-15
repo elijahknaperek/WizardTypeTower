@@ -20,7 +20,7 @@ var dead = false
 func _ready() -> void:
 	Global.score = 0
 	$Spawn.start()
-	$AnimationPlayer.play("RESET")
+	$AnimationPlayer.play("start")
 	
 
 func spawn_enemy():

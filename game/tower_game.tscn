@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bpfdwxw0ns82y"]
+[gd_scene load_steps=37 format=3 uid="uid://bpfdwxw0ns82y"]
 
 [ext_resource type="PackedScene" uid="uid://dhcwgyrj6yyqn" path="res://game/tower.tscn" id="1_f5brq"]
 [ext_resource type="Script" path="res://game/tower_game.gd" id="1_wyn0i"]
@@ -44,7 +44,7 @@ radius = 639.001
 offsets = PackedFloat32Array(0, 0.6, 0.690625, 0.765625)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5yyi3"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w84qa"]
 gradient = SubResource("Gradient_sdtej")
 width = 1280
 height = 1280
@@ -80,8 +80,8 @@ offsets = PackedFloat32Array(0, 0.0411765, 0.0882353, 0.138235)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_pkyh6"]
-offsets = PackedFloat32Array(0, 0.0823529, 0.138235, 0.765625)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.0823529, 0.138235, 0.229412, 0.765625)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_sqjr6"]
 offsets = PackedFloat32Array(0, 0.0382353)
@@ -116,12 +116,84 @@ tracks/0/keys = {
 "update": 1,
 "values": [SubResource("Gradient_sdtej")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hide:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Gradient" id="Gradient_ionka"]
+offsets = PackedFloat32Array(0, 0.0764706, 0.217647, 0.323529)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_d37os"]
+offsets = PackedFloat32Array(0, 0.138235, 0.294118, 0.385294)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_dsssh"]
+offsets = PackedFloat32Array(0, 0.138235, 0.467647, 0.597059)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_821e8"]
+offsets = PackedFloat32Array(0, 0.138235, 0.579412, 0.744118)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_am550"]
+offsets = PackedFloat32Array(0, 0.0411765, 0.0882353, 0.138235, 0.891176, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_7nb7q"]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background2:texture:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1.18921, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [SubResource("Gradient_sqjr6"), SubResource("Gradient_ionka"), SubResource("Gradient_d37os"), SubResource("Gradient_dsssh"), SubResource("Gradient_821e8"), SubResource("Gradient_am550"), SubResource("Gradient_dis0t"), SubResource("Gradient_pkyh6"), SubResource("Gradient_it5px"), SubResource("Gradient_llom7"), SubResource("Gradient_d7do1"), SubResource("Gradient_4u675"), SubResource("Gradient_ed8if"), SubResource("Gradient_hs8gf"), SubResource("Gradient_sdtej")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hide:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0045),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nfjid"]
 _data = {
 "Death": SubResource("Animation_t3rgt"),
-"RESET": SubResource("Animation_06cev")
+"RESET": SubResource("Animation_06cev"),
+"start": SubResource("Animation_7nb7q")
 }
+
+[sub_resource type="Gradient" id="Gradient_hvu4c"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryuig"]
+gradient = SubResource("Gradient_hvu4c")
+width = 1280
+height = 1280
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="TowerGame" type="Node2D"]
 script = ExtResource("1_wyn0i")
@@ -257,12 +329,16 @@ one_shot = true
 
 [node name="Background2" type="Sprite2D" parent="."]
 z_index = 1
-texture = SubResource("GradientTexture2D_5yyi3")
+texture = SubResource("GradientTexture2D_w84qa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nfjid")
 }
+
+[node name="Hide" type="Sprite2D" parent="."]
+z_index = 1
+texture = SubResource("GradientTexture2D_ryuig")
 
 [connection signal="died" from="Tower" to="." method="_on_Tower_died"]
 [connection signal="took_damage" from="Tower" to="." method="_on_tower_took_damage"]
