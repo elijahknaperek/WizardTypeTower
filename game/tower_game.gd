@@ -23,9 +23,13 @@ func _ready() -> void:
 	$AnimationPlayer.play("start")
 	Global.streak_changed.connect(_on_streak_changed)
 	
+#8.5 seconds to reach from spawn for first
+#20
+ 
 
 func spawn_enemy():
-	var num_to_spawn = int(clamp(randfn(4,1),1,min(12,wpm*0.5)))
+	
+	var num_to_spawn = int(clamp(randfn(4,1),1,min(12,(wpm-10.0)*0.2 + 5.0)))
 	var pos = randf() * 2 * PI
 	
 	var start_spawn_dist =  min_spawn_dist
@@ -35,6 +39,12 @@ func spawn_enemy():
 	
 	for total_spawned in num_to_spawn:
 		var e = enemy.instantiate()
+		
+		#dont spawn if too many for wpm
+		if (($Enemies.get_child_count()/(start_spawn_dist/e.max_velocity))*60.0)/5.0 > wpm:
+			print("to many")
+			break
+		
 		e.global_position = ($Tower.global_position+Vector2(start_spawn_dist + spawn_spacing * total_spawned,0).rotated(randf() * 2 * PI))
 		e.player = $Tower
 		if randf() < shield_chance:
@@ -62,9 +72,12 @@ func _on_spawn_timeout() -> void:
 func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
 	wpm -= wpm_down_on_hit
+	$Spawn.stop()
+	$Spawn.wait_time = 60.0/wpm
+	$Spawn.start()
 	for enemy in $Enemies.get_child_count():
 		var e:Enemy = $Enemies.get_child(enemy)
-		e.velocity += (e.global_position - $Tower.global_position).normalized() * (1000.0 + 20.0 * enemy)
+		e.velocity += (e.global_position - $Tower.global_position).normalized() * (1000.0 + 40.0 * enemy)
 	
 func _on_Tower_died():
 	if dead:

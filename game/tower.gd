@@ -40,7 +40,7 @@ func fire_fireball(chr):
 			f.velocity = Vector2(1,0).rotated(randf() * 2 * PI) * 600
 			$FireFireball.play()
 			return
-	if Global.streak > 0:
+	if Global.streak > 0 and !$AnimationPlayer.is_playing():
 		$AnimationPlayer.play("savestreak")
 			
 func save_streak():

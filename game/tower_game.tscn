@@ -363,6 +363,6 @@ texture = SubResource("GradientTexture2D_ryuig")
 [connection signal="body_entered" from="Tower/BonusReduce3" to="." method="_on_bonus_reduce_body_entered"]
 [connection signal="body_entered" from="Tower/BonusReduce4" to="." method="_on_bonus_reduce_body_entered"]
 [connection signal="body_entered" from="Tower/BonusReduce5" to="." method="_on_bonus_reduce_body_entered"]
-[connection signal="body_entered" from="Tower/Activate" to="." method="_on_bonus_reduce_body_entered"]
 [connection signal="body_entered" from="Tower/Activate" to="." method="_on_activate_body_entered"]
+[connection signal="body_entered" from="Tower/Activate" to="." method="_on_bonus_reduce_body_entered"]
 [connection signal="timeout" from="Spawn" to="." method="_on_spawn_timeout"]
