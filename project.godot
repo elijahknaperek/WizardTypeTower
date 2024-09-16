@@ -31,6 +31,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="WizardTypeTower"
 
+[gui]
+
+theme/custom_font="res://assets/Font/code_new_roman/Code New Roman.otf"
+
 [input]
 
 Backspace={
