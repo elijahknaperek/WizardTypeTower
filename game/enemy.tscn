@@ -19,6 +19,7 @@ fill_from = Vector2(0.5, 0.5)
 font_names = PackedStringArray("Monospace")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upr4p"]
+radius = 19.105
 
 [sub_resource type="Gradient" id="Gradient_ijn32"]
 offsets = PackedFloat32Array(0.34375, 0.421875, 0.459375, 0.471875, 0.521875)

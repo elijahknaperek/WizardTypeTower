@@ -17,8 +17,10 @@ var spawn_spacing = 10
 
 var dead = false
 
+
+
 func _ready() -> void:
-	Global.score = 0
+	Global.reset()
 	$Spawn.start()
 	$AnimationPlayer.play("start")
 	Global.streak_changed.connect(_on_streak_changed)
@@ -73,7 +75,7 @@ func _on_tower_took_damage(hp: Variant) -> void:
 	%SegmentedProgressBar.value = hp/10.0
 	wpm -= wpm_down_on_hit
 	$Spawn.stop()
-	$Spawn.wait_time = 60.0/wpm
+	$Spawn.wait_time = (60.0/wpm) * 2.0
 	$Spawn.start()
 	for enemy in $Enemies.get_child_count():
 		var e:Enemy = $Enemies.get_child(enemy)

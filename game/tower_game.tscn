@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://bpfdwxw0ns82y"]
+[gd_scene load_steps=40 format=3 uid="uid://bpfdwxw0ns82y"]
 
 [ext_resource type="PackedScene" uid="uid://dhcwgyrj6yyqn" path="res://game/tower.tscn" id="1_f5brq"]
 [ext_resource type="Script" path="res://game/tower_game.gd" id="1_wyn0i"]
 [ext_resource type="Texture2D" uid="uid://b7rlayuc3p02g" path="res://assets/image/Texture_01160_.png" id="2_2me20"]
 [ext_resource type="Script" path="res://util/segmented_progress_bar.gd" id="3_04nw0"]
+[ext_resource type="Script" path="res://game/pause.gd" id="5_q81hr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ka12n"]
 transparency = 1
@@ -195,6 +196,14 @@ height = 1280
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_ynudj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nify7"]
+gradient = SubResource("Gradient_ynudj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
 [node name="TowerGame" type="Node2D"]
 script = ExtResource("1_wyn0i")
 
@@ -356,6 +365,53 @@ libraries = {
 z_index = 1
 texture = SubResource("GradientTexture2D_ryuig")
 
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("5_q81hr")
+
+[node name="TextureRect" type="TextureRect" parent="Pause"]
+modulate = Color(1, 1, 1, 0.27451)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nify7")
+expand_mode = 3
+
+[node name="Control" type="CenterContainer" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/Control"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pause/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Unpause" type="Button" parent="Pause/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Unpause"
+
+[node name="Restart" type="Button" parent="Pause/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Pause/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
 [connection signal="died" from="Tower" to="." method="_on_Tower_died"]
 [connection signal="took_damage" from="Tower" to="." method="_on_tower_took_damage"]
 [connection signal="body_entered" from="Tower/BonusReduce" to="." method="_on_bonus_reduce_body_entered"]
@@ -366,3 +422,6 @@ texture = SubResource("GradientTexture2D_ryuig")
 [connection signal="body_entered" from="Tower/Activate" to="." method="_on_activate_body_entered"]
 [connection signal="body_entered" from="Tower/Activate" to="." method="_on_bonus_reduce_body_entered"]
 [connection signal="timeout" from="Spawn" to="." method="_on_spawn_timeout"]
+[connection signal="pressed" from="Pause/Control/VBoxContainer/HBoxContainer/Unpause" to="Pause" method="_on_unpause_pressed"]
+[connection signal="pressed" from="Pause/Control/VBoxContainer/HBoxContainer/Restart" to="Pause" method="_on_restart_pressed"]
+[connection signal="pressed" from="Pause/Control/VBoxContainer/HBoxContainer/Quit" to="Pause" method="_on_quit_pressed"]

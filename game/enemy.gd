@@ -13,6 +13,8 @@ var active = false
 @export var accel := 100.0
 var max_accel = 1000.0
 
+var fully_targeted = false
+var targeting = 0
 var stop_speed := 400.0
 @export var friction := 0.2	
 
@@ -77,6 +79,11 @@ func remove():
 	if closest and get_parent().get_child_count() > 1:
 		get_parent().get_child(1).closest = true
 	queue_free()
+	
+func add_targeting():
+	targeting += 1
+	if targeting > shield:
+		fully_targeted = true
 
 
 func _on_area_2d_body_entered(body: Fireball) -> void:

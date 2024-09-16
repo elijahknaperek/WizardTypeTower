@@ -6,7 +6,7 @@ var GAME_SCENE = load("res://game/tower_game.tscn")
 const char_lvl = ["abcdefghijklmnopqrstuvwxyz",
 				"abcdefghijklmnopqrstuvwxyz0123456789",]
 const chars = "!\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
-const chars2 = "asdfjkl;ASDFJKL:!\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxy"
+const chars2 = "asdfjkl;ASDFJKL:!\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ,.,.01234567898=+/*!-<>:"
 
 
 var score
@@ -18,3 +18,9 @@ var streak = 0:
 		streak = v
 		streak_changed.emit(v)
 var max_streak = 0
+
+
+func reset():
+	score = 0
+	streak = 0
+	max_streak = 0

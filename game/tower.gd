@@ -31,10 +31,11 @@ func _input(event: InputEvent) -> void:
 func fire_fireball(chr):
 	var enemy_list = get_parent().get_node("Enemies")
 	for enemy:Enemy in enemy_list.get_children():
-		if enemy.active and enemy.chr == chr:
+		if enemy.active and !enemy.fully_targeted and enemy.chr == chr:
 			var f = fireball.instantiate()
 			f.target = enemy
 			f.target_char = enemy.chr
+			enemy.add_targeting()
 			get_parent().add_child(f)
 			f.global_position = global_position
 			f.velocity = Vector2(1,0).rotated(randf() * 2 * PI) * 600
