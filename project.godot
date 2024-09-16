@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="WizardTypeTower"
+config/version="0.1"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/image/horror_croped.png"
+config/windows_native_icon="res://assets/image/horror_croped.ico"
 
 [autoload]
 
@@ -23,6 +25,7 @@ Global="*res://game/Global.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
