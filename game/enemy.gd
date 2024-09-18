@@ -15,8 +15,8 @@ var max_accel = 1000.0
 
 var fully_targeted = false
 var targeting = 0
-var stop_speed := 400.0
-@export var friction := 0.2	
+var stop_speed := 50.0
+@export var friction := 0.05	
 
 var shield = 0:
 	set(v):

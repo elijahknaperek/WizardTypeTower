@@ -79,7 +79,7 @@ func _on_tower_took_damage(hp: Variant) -> void:
 	$Spawn.start()
 	for enemy in $Enemies.get_child_count():
 		var e:Enemy = $Enemies.get_child(enemy)
-		e.velocity += (e.global_position - $Tower.global_position).normalized() * (600.0 + 40.0 * enemy)
+		e.velocity += (e.global_position - $Tower.global_position).normalized() * (800.0 + 5.0 * enemy)
 	
 func _on_Tower_died():
 	if dead:
