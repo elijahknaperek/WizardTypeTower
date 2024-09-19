@@ -14,6 +14,7 @@ config/name="WizardTypeTower"
 config/version="0.1"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://assets/image/Texture_01160_.png"
 config/icon="res://assets/image/horror_croped.png"
 config/windows_native_icon="res://assets/image/horror_croped.ico"
 

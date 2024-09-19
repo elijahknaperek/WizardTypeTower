@@ -409,6 +409,7 @@ layout_mode = 2
 text = "Restart"
 
 [node name="Quit" type="Button" parent="Pause/Control/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Quit"
 
